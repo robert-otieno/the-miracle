@@ -1,39 +1,40 @@
 "use client";
 
 import { CldUploadWidget } from "next-cloudinary";
-// import { useState } from "react";
-// import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "../auth-provider";
+import { useRef, useState } from "react";
+import SignInSheet from "./sign-in-sheet";
 
 export default function ImageUploader() {
-  // const [imageUrl, setImageUrl] = useState<string | null>(null);
+  const { user } = useAuth();
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const uploadRef = useRef<() => void>(null);
+
+  const handleClick = () => {
+    if (user) {
+      uploadRef.current?.();
+    } else {
+      setSheetOpen(true);
+    }
+  };
 
   return (
     <div className='flex flex-col items-center gap-4'>
-      <CldUploadWidget
-        signatureEndpoint='/api/sign-image'
-        options={{ folder: process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER || "Wedding", multiple: false, sources: ["local", "url"] }}
-        // onUploadAdded={(result) => {
-        //   if (result && typeof result.info === "object" && result.info !== null && "secure_url" in result.info) {
-        //     setImageUrl((result.info as { secure_url: string }).secure_url);
-        //   }
-        // }}
-      >
+      <CldUploadWidget signatureEndpoint='/api/sign-image' options={{ folder: process.env.NEXT_PUBLIC_CLOUDINARY_FOLDER || "Wedding", multiple: false, sources: ["local", "url"] }}>
         {({ open }) => {
+          uploadRef.current = open;
+
           return (
-            <Button variant='secondary' onClick={() => open()}>
-              Upload your wedding photo
+            <Button variant='secondary' onClick={handleClick}>
+              {user ? "Upload your wedding photo" : "Sign in to upload your wedding photo"}
               <span className='sr-only'>Upload Photo</span>
             </Button>
           );
         }}
       </CldUploadWidget>
 
-      {/* {imageUrl && (
-        <div className='relative w-80 h-60'>
-          <Image src={imageUrl} alt='Uploaded wedding photo' fill className='rounded-md object-cover' />
-        </div>
-      )} */}
+      <SignInSheet open={sheetOpen} onOpenChange={setSheetOpen} onSuccess={() => uploadRef.current} />
     </div>
   );
 }

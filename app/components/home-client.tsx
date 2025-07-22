@@ -4,7 +4,6 @@ import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
 
 import HeroOverlay from "./hero-overlay";
-import Link from "next/link";
 import MasonryGallery from "./masonry-gallery";
 import { Button } from "@/components/ui/button";
 
@@ -33,18 +32,16 @@ export default function HomeClient({ images }: { images: { publicId: string; sec
         <HeroOverlay />
 
         {/* Scroll Indicator */}
-        <Link href='#gallery' scroll={false}>
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2, duration: 1, repeat: Infinity, repeatType: "reverse" }}
-            className='absolute bottom-6 left-1/2 -translate-x-1/2 z-20'
-          >
-            <svg className='w-6 h-6 text-white animate-pulse' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
-              <path strokeLinecap='round' strokeLinejoin='round' d='M19 9l-7 7-7-7' />
-            </svg>
-          </motion.div>
-        </Link>
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+          className='absolute bottom-6 left-1/2 -translate-x-1/2 z-20'
+        >
+          <svg className='w-8 h-8 text-white animate-pulse' fill='none' stroke='currentColor' strokeWidth='2' viewBox='0 0 24 24'>
+            <path strokeLinecap='round' strokeLinejoin='round' d='M19 9l-7 7-7-7' />
+          </svg>
+        </motion.div>
       </section>
 
       {/* Gallery Section */}
