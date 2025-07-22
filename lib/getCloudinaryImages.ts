@@ -20,6 +20,7 @@ export async function getCloudinaryImages(): Promise<CloudinaryImage[]> {
       .max_results(30)
       .execute()
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return result.resources.map((resource: any) => ({
       public_id: resource.public_id,
       secure_url: resource.secure_url,

@@ -1,4 +1,5 @@
 function forceDownload(blobUrl: string, filename: string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const a: any = document.createElement("a");
   a.download = filename;
   a.href = blobUrl;
