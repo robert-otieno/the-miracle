@@ -2,6 +2,9 @@
 
 import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+import { cn } from "@/lib/utils";
 
 import HeroOverlay from "./hero-overlay";
 import MasonryGallery from "./masonry-gallery";
@@ -10,9 +13,21 @@ import { Button } from "@/components/ui/button";
 const mapsUrl = encodeURI("https://maps.app.goo.gl/SeKdrAXmcXi4qRGo9");
 
 export default function HomeClient({ images }: { images: { publicId: string; secureUrl: string }[] }) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <main className='relative'>
-      <a href={mapsUrl} target='_blank' rel='noopener noreferrer' className='fixed top-4 left-1/2 transform -translate-x-1/2 z-50'>
+      <a href={mapsUrl} target='_blank' rel='noopener noreferrer' className={cn("fixed z-50 transition-all duration-300", scrolled ? "bottom-4 right-4" : "top-4 left-1/2 -translate-x-1/2")}>
         <Button variant='outline' className='px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 bg-white text-black font-semibold rounded-full shadow hover:bg-gray-200 transition my-4'>
           📍 Get Directions
         </Button>

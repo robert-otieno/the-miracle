@@ -13,7 +13,7 @@ const breakpointColumnsObj = {
 
 export default function MasonryGallery({ images }: { images: { publicId: string; secureUrl: string }[] }) {
   return (
-    <section className='relative z-20 bg-white px-4 py-6 mx-auto'>
+    <section className='relative z-20 bg-black px-4 py-6 mx-auto'>
       <PhotoProvider>
         <Masonry breakpointCols={breakpointColumnsObj} className='flex w-auto gap-4' columnClassName='bg-clip-padding'>
           {images.map((img, i) => (

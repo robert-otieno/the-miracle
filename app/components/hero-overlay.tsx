@@ -5,7 +5,7 @@ import ImageUploader from "./image-uploader";
 
 export default function HeroOverlay() {
   return (
-    <div className='absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/50 to-transparent flex items-end justify-center'>
+    <div className='absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex items-end pb-8 justify-center'>
       <motion.div
         className='text-white px-4 pb-16 text-center'
         initial={{ opacity: 0, y: 30 }}
