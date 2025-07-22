@@ -6,16 +6,23 @@ import { motion } from "framer-motion";
 import HeroOverlay from "./hero-overlay";
 import Link from "next/link";
 import MasonryGallery from "./masonry-gallery";
+import { Button } from "@/components/ui/button";
+
+const mapsUrl = encodeURI("https://maps.app.goo.gl/SeKdrAXmcXi4qRGo9");
 
 export default function HomeClient({ images }: { images: { publicId: string; secureUrl: string }[] }) {
   return (
     <main className='relative'>
+      <a href={mapsUrl} target='_blank' rel='noopener noreferrer' className='fixed top-4 left-1/2 transform -translate-x-1/2 z-50'>
+        <Button variant='outline' className='px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 bg-white text-black font-semibold rounded-full shadow hover:bg-gray-200 transition my-4'>
+          📍 Get Directions
+        </Button>
+      </a>
       {/* Background Image */}
       <section className='relative z-10 h-screen w-full overflow-hidden'>
         <CldImage
-          src="IMG_4747_zpnuvf"
+          src='IMG_4747_zpnuvf'
           fill
-          gravity="auto"
           alt='Wedding Hero'
           className='object-cover z-0'
           // sizes='(max-width: 640px) 100vw, (max-width: 1280px) 50vw, (max-width: 1536px) 33vw, 25vw'

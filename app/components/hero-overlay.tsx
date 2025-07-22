@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-// import ImageUploader from "./image-uploader";
+import ImageUploader from "./image-uploader";
 
 export default function HeroOverlay() {
   return (
@@ -17,10 +17,10 @@ export default function HeroOverlay() {
 
         <p className='mt-3 text-base sm:text-lg md:text-xl mb-4'>Captured memories, forever cherished</p>
 
-        {/* <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.5 }} viewport={{ once: true }}>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, delay: 1.5 }} viewport={{ once: true }}>
           <ImageUploader />
           <p className='mt-5 text-xs sm:text-sm md:text-base'>Upload your photos to share with us!</p>
-        </motion.div> */}
+        </motion.div>
       </motion.div>
     </div>
   );
