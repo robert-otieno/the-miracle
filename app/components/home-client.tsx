@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
+// Version 1 & 2
+// import HeroSlideshow from "./hero-slideshow";
 
 import HeroOverlay from "./hero-overlay";
 import MasonryGallery from "./masonry-gallery";
@@ -25,9 +27,12 @@ export default function HomeClient({ images }: { images: { publicId: string; sec
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Version 2
+  // const heroImages = images.slice(0, 5).map((img) => img.publicId);
+
   return (
     <main className='relative'>
-      <a href={mapsUrl} target='_blank' rel='noopener noreferrer' className={cn("fixed z-50 transition-all duration-300", scrolled ? "bottom-4 right-4" : "top-4 left-1/2 -translate-x-1/2")}>
+      <a href={mapsUrl} target='_blank' rel='noopener noreferrer' className={cn("fixed z-50 transition-all duration-300", scrolled ? "top-4 right-4" : "top-4 left-1/2 -translate-x-1/2")}>
         <Button variant='outline' className='px-4 py-2 text-sm sm:text-base sm:px-6 sm:py-2 bg-white text-black font-semibold rounded-full shadow hover:bg-gray-200 transition my-4'>
           📍 Get Directions
         </Button>
@@ -42,6 +47,8 @@ export default function HomeClient({ images }: { images: { publicId: string; sec
           // sizes='(max-width: 640px) 100vw, (max-width: 1280px) 50vw, (max-width: 1536px) 33vw, 25vw'
           priority
         />
+        {/* <HeroSlideshow images={images} /> */}
+        {/* <HeroSlideshow publicIds={heroImages} /> */}
 
         {/* Overlay Content */}
         <HeroOverlay />

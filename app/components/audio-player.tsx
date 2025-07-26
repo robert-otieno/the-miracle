@@ -19,7 +19,7 @@ export default function AudioPlayer() {
       try {
         await audio.play();
         setPlaying(true);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         console.log("Autoplay blocked, waiting for user interaction.");
       }
@@ -44,9 +44,12 @@ export default function AudioPlayer() {
   return (
     <div className='fixed bottom-4 right-4 z-50'>
       <audio ref={audioRef} src={CLOUDINARY_AUDIO_URL} loop preload='auto' />
-      <Button onClick={togglePlay} variant='outline' className='rounded-full p-2 shadow'>
-        {playing ? <Volume2 className='h-5 w-5' /> : <VolumeX className='h-5 w-5' />}
-      </Button>
+      <span className='relative flex size-12'>
+        <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75'></span>
+        <Button onClick={togglePlay} variant='secondary' size='icon' className='relative inline-flex size-12 rounded-full shadow-lg'>
+          {playing ? <Volume2 className='h-6 w-6' /> : <VolumeX className='h-6 w-6' />}
+        </Button>
+      </span>
     </div>
   );
 }
